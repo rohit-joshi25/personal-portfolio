@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rohit Joshi | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0f111b;
+      --text: #e6e8eb;
+      --primary: #4ea8de;
+      --accent: #1e213a;
+      --muted: #555c7c;
+      --shadow: rgba(78, 168, 222, 0.25);
+      --font-family: 'Inter', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      font-family: var(--font-family);
+      background-color: var(--bg);
+      color: var(--text);
+      scroll-behavior: smooth;
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    a:hover {
+      color: var(--primary);
+    }
+
+    /* Navbar */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0; right: 0;
+      height: 72px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      z-index: 999;
+      box-shadow: 0 2px 8px var(--shadow);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 24px;
+      letter-spacing: 1px;
+      cursor: default;
+      user-select: none;
+    }
+
+    nav {
+      display: flex;
+      gap: 32px;
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    nav a {
+      position: relative;
+      padding: 6px 0;
+      transition: color 0.3s ease;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+      border-radius: 1px;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero Section */
+    main {
+      padding-top: 100px;
+      max-width: 900px;
+      margin: 0 auto;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+
+    section {
+      margin-bottom: 80px;
+    }
+
+    .hero {
+      text-align: center;
+      margin-top: 80px;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    .hero h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 24px;
+    }
+
+    .hero p {
+      font-size: 1.125rem;
+      line-height: 1.6;
+      max-width: 600px;
+      margin: 0 auto;
+      color: var(--muted);
+    }
+
+    /* Section Titles */
+    h2.section-title {
+      font-weight: 700;
+      font-size: 2rem;
+      margin-bottom: 32px;
+      color: var(--text);
+      border-bottom: 3px solid var(--primary);
+      display: inline-block;
+      padding-bottom: 6px;
+    }
+
+    /* Projects Grid */
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 28px;
+    }
+
+    .card {
+      background: var(--accent);
+      padding: 24px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 30px var(--shadow);
+    }
+
+    .card h3 {
+      margin-bottom: 8px;
+      color: var(--text);
+      font-weight: 700;
+      font-size: 1.25rem;
+    }
+
+    .card small {
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    /* Tools Marquee */
+    .tools-marquee {
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      padding: 16px 0;
+      border-top: 1px solid var(--accent);
+      border-bottom: 1px solid var(--accent);
+      margin-bottom: 80px;
+    }
+
+    .tools-track {
+      display: flex;
+      gap: 36px;
+      animation: scroll-left 35s linear infinite;
+      width: max-content;
+      align-items: center;
+    }
+
+    .tools-track > div, .tools-track > img {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: var(--text);
+      font-size: 12px;
+      min-width: 72px;
+      user-select: none;
+    }
+
+    .tools-track img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      margin-bottom: 6px;
+      filter: brightness(0.9);
+      transition: filter 0.3s ease;
+    }
+
+    .tools-track img:hover {
+      filter: brightness(1);
+    }
+
+    @keyframes scroll-left {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* Contact */
+    .contact-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 48px;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .contact-info {
+      flex: 1 1 320px;
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 400px;
+    }
+
+    .contact-info a {
+      color: var(--primary);
+      font-weight: 600;
+      word-break: break-all;
+    }
+
+    .social-links {
+      margin-top: 16px;
+      display: flex;
+      gap: 20px;
+    }
+
+    .social-links a {
+      color: var(--text);
+      font-size: 24px;
+      transition: color 0.3s ease;
+    }
+
+    .social-links a:hover {
+      color: var(--primary);
+    }
+
+    form.contact-form {
+      flex: 1 1 320px;
+      max-width: 420px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    form.contact-form input,
+    form.contact-form textarea {
+      padding: 14px 18px;
+      border-radius: 6px;
+      border: 1.5px solid var(--accent);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 1rem;
+      resize: vertical;
+      transition: border-color 0.3s ease;
+    }
+
+    form.contact-form input:focus,
+    form.contact-form textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 8px var(--primary);
+    }
+
+    form.contact-form button {
+      background: var(--primary);
+      color: white;
+      font-weight: 700;
+      font-size: 1.125rem;
+      padding: 14px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    form.contact-form button:hover {
+      background: #3b82c7;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      color: var(--muted);
+      font-size: 0.875rem;
+      border-top: 1px solid var(--accent);
+      user-select: none;
+    }
+
+    footer a {
+      color: var(--primary);
+      margin: 0 6px;
+      font-weight: 600;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      main {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .contact-container {
+        flex-direction: column;
+      }
+
+      nav {
+        gap: 20px;
+        font-size: 14px;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero h2 {
+        font-size: 1.125rem;
+      }
+
+      .projects {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      header {
+        padding: 0 24px;
+      }
+    }
+    #menu-toggle {
+  display: none;
+}
+@media (max-width: 768px) {
+  #menu-toggle {
+    display: block;
+  }
+  nav {
+    display: none;
+    flex-direction: column;
+    background: var(--bg);
+    position: absolute;
+    top: 72px;
+    right: 24px;
+    padding: 12px;
+    border: 1px solid var(--accent);
+    box-shadow: 0 8px 16px var(--shadow);
+    z-index: 1000;
+  }
+  nav.open {
+    display: flex;
+  }
+}
+.tools-marquee:hover .tools-track {
+  animation-play-state: paused;
+}
+
+  </style>
+</head>
+<body>
+
+<header>
+  <button id="menu-toggle" style="background: none; border: none; color: var(--text); font-size: 24px; display: none;">
+  <i class="fas fa-bars"></i>
+</button>
+
+  <a href="#home" class="logo" style="font-size: 20px; font-weight: 700; letter-spacing: 0.5px;">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSn-mLqVUisgZmQ_I9xw8PEzAtgXSxbUM3pFw&s" alt="logo" style="width: 60px; height: 60px;" />
+  <span style="color: var(--primary);">Rohit</span> 
+</a>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#projects">Work</a>
+    <a href="#blog">Blog</a>
+    <a href="Rohit Joshi.docx" download>Resume</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+  <section id="home" class="hero" data-aos="fade-up">
+    <h1>Hi, I'm Rohit Joshi</h1>
+    <h2>Frontend & Backend Developer</h2>
+    <p>I enjoy building web applications that are fast, responsive, and user-friendly. I specialize in full-stack development using modern tools and frameworks.</p>
+  </section>
+  <section id="about" data-aos="fade-up">
+  <h2 class="section-title">About Me</h2>
+  <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 32px;">
+    <div style="flex: 1 1 250px; text-align: center;">
+      <img src="image/IMG_20241020_164308.jpg" alt="Rohit Joshi" style="width: 150%; max-width: 300px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.4);" />
+    
+    </div>
+    <div style="flex: 2 1 400px;">
+      <h3 style="font-size: 1.5rem; margin-bottom: 12px; color: var(--primary);">Rohit Joshi aka Chiku</h3>
+      <p style="font-size: 1rem; line-height: 1.8; color: var(--muted);">
+        Hello! I'm a developer from Chandigarh, India. I enjoy programming and exploring technology.
+        I've participated in 15+ hackathons & ideathons and won 6 of them.
+        <br><br>
+        I've delivered 10+ freelance projects, interned at two startups and failed to build my own startup twice. <strong>#LifeGoesOn</strong>.
+        I'm super active on X where I share funnies and <strong>#BuildInPublic</strong>.
+        <br><br>
+        I'm an AWS Cloud Club Captain, a maintainer and contributor of open-source projects.
+        When not coding, I read books, go out for a run or binge YouTube.
+        <br><br>
+        <strong>I'm open to work, freelance, or collaborate.</strong> <a href="#contact" style="color: var(--primary); font-weight: 600;">Contact Me →</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+  <section id="projects" data-aos="fade-up">
+    <h2 class="section-title">Work</h2>
+    <div class="projects">
+      <div class="card">
+        <h3>Portfolio Website</h3>
+        <small>HTML • CSS • JS</small>
+        <p>A responsive personal website to showcase my projects and resume.</p>
+        <a href="https://github.com/rohit-joshi25/Level1-task1-landing-page"target="_blank" style="color: var(--primary); font-weight: 600; display: inline-block; margin-top: 8px;">Visit GitHub →</a>
+      </div>
+      <div class="card">
+        <h3>E-auction Cart System</h3>
+        <small>PHP • MySQL</small>
+        <p>Basic e-commerce functionality including session-based cart management.</p>
+        <a href="https://github.com/rohit-joshi25/E-auction-website"target="_blank" style="color: var(--primary); font-weight: 600; display: inline-block; margin-top: 8px;">Visit GitHub →</a>
+      </div>
+      <div class="card">
+        <h3>Student Portal</h3>
+        <small>PHP • MySQL</small>
+        <p>A portal where students can view results; includes admin features.</p>
+      </div>
+      <div class="card">
+        <h3>Weather App</h3>
+        <small>JavaScript • API</small>
+        <p>Displays live weather data from public API with responsive UI.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="tools" data-aos="fade-up">
+    <h2 class="section-title">Tools I Use</h2>
+    <div class="tools-marquee" aria-label="Scrolling list of tools and technologies">
+      <div class="tools-track" aria-hidden="true">
+        <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" /><span>JavaScript</span></div>
+        <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" /><span>TypeScript</span></div>
+        <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="Next.js" /><span>Next.js</span></div>
+        <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" /><span>React</span></div>
+        <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg" alt="TailwindCSS" /><span>TailwindCSS</span></div>
+        <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" alt="Bootstrap" /><span>Bootstrap</span></div>
+        <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++" /><span>C++</span></div>
+        <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" /><span>CSS3</span></div>
+        <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C" /><span>C</span></div>
+        <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" /><span>Python</span></div>
+        <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/solidity/solidity-original.svg" alt="Solidity" /><span>Solidity</span></div>
+        <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" /><span>HTML5</span></div>
+        <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" /><span>PostgreSQL</span></div>
+        <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prisma/prisma-original.svg" alt="Prisma" /><span>Prisma</span></div>
+        <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" /><span>Node.js</span></div>
+        <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase" /><span>Firebase</span></div>
+        <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" alt="Nginx" /><span>Nginx</span></div>
+        <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express" /><span>Express</span></div>
+        <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow" /><span>TensorFlow</span></div>
+        <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/keras/keras-original.svg" alt="Keras" /><span>Keras</span></div>
+        <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bun/bun-original.svg" alt="Bun" /><span>Bun</span></div>
+        <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" alt="Flask" /><span>Flask</span></div>
+        <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux" /><span>Linux</span></div>
+        <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ubuntu/ubuntu-plain.svg" alt="Ubuntu" /><span>Ubuntu</span></div>
+        <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg" alt="Windows" /><span>Windows</span></div>
+        <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" /><span>Git</span></div>
+        <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" /><span>GitHub</span></div>
+        <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VSCode" /><span>VSCode</span></div>
+        <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" /><span>PHP</span></div>
+        <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" /><span>MySQL</span></div>
+        <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" /><span>MongoDB</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="blog" data-aos="fade-up">
+    <h2 class="section-title">Blog</h2>
+    <div class="projects">
+      <div class="card">
+        <h3>Why I Chose Web Development</h3>
+        <small>April 2025</small>
+        <p>My journey into web development, what inspired me, and what I’ve learned so far.</p>
+        <a href="blog/post1.html" style="color: var(--primary); font-weight: 600; margin-top: 8px; display: inline-block;">Read More →</a>
+
+      </div>
+      <div class="card">
+        <h3>PHP vs JavaScript for Backend</h3>
+        <small>March 2025</small>
+        <p>A beginner-friendly comparison of PHP and Node.js for backend development.</p>
+        <a href="blog/post2.html" style="color: var(--primary); font-weight: 600; margin-top: 8px; display: inline-block;">Read More →</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="resume" data-aos="fade-up">
+    <h2 class="section-title">Resume</h2>
+    <div class="projects">
+      <div class="card">
+        <h3>Education</h3>
+        <p>BCA – Panjab University Chandigarh<br>2022–2025, CGPA: 8.4</p>
+        <br>
+        <P>Intermediate – Vivekanand Vidya Mandir Inter College ,Pithoragarh<br>2021-22</p>
+          <br>
+          <p>High School – Vivekanand Vidya Mandir Inter College ,Pithoragarh<br>2019-2020<br> </p>
+          
+      </div>
+      <div class="card">
+        <h3>Skills</h3>
+        <p>HTML, CSS, JavaScript, PHP, MySQL, Git, GitHub, API, React (basics)</p>
+      </div>
+      <div class="card">
+        <h3>Certifications</h3>
+        <p>Frontend Development (Coursera), Git & GitHub (FreeCodeCamp), MySQL Basics (Udemy)</p>
+        <br>
+        <p>Database Management with SQL – Hacker Rank (Issued: Jan 15, 2024)<br>
+          <a href="https://www.hackerrank.com/certificates/95556d4912b4"style="color: var(--primary); font-weight: 600; margin-top: 8px; display: inline-block;">View Certificate</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" data-aos="fade-up">
+    <h2 class="section-title">Contact Me</h2>
+    <div class="contact-container">
+      <div class="contact-info">
+        <p>FIf you have any inquiries, please feel free to reach out. You can contact me via email at </p>
+        <p><a href="mailto:rohitjoshi@example.com">rohitjoshi2899@gmail.com</a></p><br>
+        <h5 style="color: rgb(254, 255, 255);">Follow me</h5>
+        <div class="social-links">
+          <a href="https://github.com/rohitjoshi" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+          <a href="https://linkedin.com/in/rohitjoshi" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i></a>
+          <a href="https://twitter.com/rohitjoshi" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
+          <a href="https://instagram.com/rohitjoshi" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+          <a href="https://github.com/rohitjoshi" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+          <a href="" target="_blank" rel="noopener"><i class=""></i></a>
+        </div>
+      </div>
+
+      <form class="contact-form" action="https://formspree.io/f/mnnvrjjl" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="_replyto" placeholder="Your Email" required />
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  &copy; 2025 Rohit Joshi aka Chiku. Built with ❤️.
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 800,
+    once: true,
+  });
+
+  const toggle = document.getElementById('menu-toggle');
+  const nav = document.querySelector('nav');
+  toggle.addEventListener('click', () => {
+    nav.classList.toggle('open');
+  });
+  
+</script>
+</body>
+</html>
