@@ -7,7 +7,7 @@
   <title>Rohit Joshi | Portfolio</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   <style>
     :root {
@@ -371,15 +371,13 @@
         padding: 0 24px;
       }
     }
-   #menu-toggle {
-  display: block;
+    #menu-toggle {
+  display: none;
 }
-@media (min-width: 769px) {
+@media (max-width: 768px) {
   #menu-toggle {
-    display: none;
+    display: block;
   }
-}
-
   nav {
     display: none;
     flex-direction: column;
@@ -399,23 +397,13 @@
 .tools-marquee:hover .tools-track {
   animation-play-state: paused;
 }
-#menu-toggle {
-  background: none;
-  border: none;
-  font-size: 28px;
-  color: var(--text);
-  cursor: pointer;
-}
 
   </style>
 </head>
 <body>
 
 <header>
-  <button id="menu-toggle" aria-label="Toggle Menu">
-  <i class="fas fa-bars"></i>
-</button>
-
+  <button id="menu-toggle" style="background: none; border: none; color: var(--text); font-size: 24px; display: none;">
   <i class="fas fa-bars"></i>
 </button>
 
@@ -604,12 +592,13 @@
     duration: 800,
     once: true,
   });
-  
+
   const toggle = document.getElementById('menu-toggle');
-const nav = document.querySelector('nav');
-toggle.addEventListener('click', () => {
-  nav.classList.toggle('open');
-});
+  const nav = document.querySelector('nav');
+  toggle.addEventListener('click', () => {
+    nav.classList.toggle('open');
+  });
+  
 </script>
 </body>
 </html>
