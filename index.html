@@ -397,38 +397,11 @@
 .tools-marquee:hover .tools-track {
   animation-play-state: paused;
 }
-.starry-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
-  overflow: hidden;
-  z-index: 0;
-}
-
-.star {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: white;
-  border-radius: 50%;
-  animation: twinkle 2s infinite ease-in-out;
-}
-
-@keyframes twinkle {
-  0%, 100% { opacity: 0.3; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.5); }
-}
 
   </style>
 </head>
 <body>
   <!-- Welcome Screen -->
-   <div class="starry-background">
-  <!-- Stars will be added with JavaScript -->
-</div>
 <div id="welcome-screen" style="
   position: fixed;
   top: 0; left: 0;
@@ -444,10 +417,9 @@
   font-family: 'Inter', sans-serif;
   text-align: center;
 ">
-
   <h1 style="font-size: 2.5rem; color: #4ea8de;">Welcome to Rohit Joshi's Portfolio</h1>
   <p style="margin-top: 10px; color: #aaa;">Frontend & Backend Developer</p>
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjZifaf8b0IUxYTKZG38j0ScqnHFVr0m2-Xg&s" alt="Rohit Joshi" style="margin-top: 20px; width: 150px; height: 150px; border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.3);" />
+  <img src="https://media.istockphoto.com/id/1390894967/vector/om-aum-brush-symbol-yoga-mantra-om-vector-icon-grunge-style.jpg?s=612x612&w=0&k=20&c=DQT6ZJ_zJSmdUOyVDZVq-njmeaF1wthBaejaKsGQZnE=" alt="Rohit Joshi" style="margin-top: 20px; width: 150px; height: 150px; border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.3);" />
   <button onclick="askName()" style="
     margin-top: 24px;
     padding: 12px 24px;
@@ -769,18 +741,5 @@
     }, 500);
   }
 </script>
-<script>
-  // 🌟 Generate random stars
-  const starContainer = document.querySelector('.starry-background');
-  for (let i = 0; i < 100; i++) {
-    const star = document.createElement('div');
-    star.className = 'star';
-    star.style.top = `${Math.random() * 100}%`;
-    star.style.left = `${Math.random() * 100}%`;
-    star.style.animationDelay = `${Math.random() * 5}s`;
-    starContainer.appendChild(star);
-  }
-</script>
-
 </body>
 </html>
