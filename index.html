@@ -401,6 +401,35 @@
   </style>
 </head>
 <body>
+  <!-- Welcome Screen -->
+<div id="welcome-screen" style="
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #0f111b, #1e213a);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 9999;
+  font-family: 'Inter', sans-serif;
+  text-align: center;
+">
+  <h1 style="font-size: 2.5rem; color: #4ea8de;">Welcome to Rohit Joshi's Portfolio</h1>
+  <p style="margin-top: 10px; color: #aaa;">Frontend & Backend Developer</p>
+  <button onclick="askName()" style="
+    margin-top: 24px;
+    padding: 12px 24px;
+    background: #4ea8de;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+  ">→</button>
+</div>
 
 <header>
   <button id="menu-toggle" style="background: none; border: none; color: var(--text); font-size: 24px; display: none;">
@@ -422,6 +451,8 @@
 </header>
 
 <main>
+  <h3 id="personal-greeting" style="color: #ccc; margin-top: 16px;"></h3>
+
   <section id="home" class="hero" data-aos="fade-up">
     <h1>Hi, I'm Rohit Joshi</h1>
     <h2>Frontend & Backend Developer</h2>
@@ -431,7 +462,8 @@
   <h2 class="section-title">About Me</h2>
   <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 32px;">
     <div style="flex: 1 1 250px; text-align: center;">
-      <img src="image/IMG_20241020_164308.jpg" alt="Rohit Joshi" loading="lazy" style="width: 250%; max-width: 320px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.4);" />
+      <img src="image/IMG_20241020_164308.jpg" alt="Rohit Joshi" loading="lazy" 
+      style="width: 250%; max-width: 320px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.4);" />
     </div>
     <div style="flex: 2 1 400px;">
       <h3 style="font-size: 1.5rem; margin-bottom: 12px; color: var(--primary);">Rohit Joshi</h3>
@@ -637,5 +669,84 @@
   });
   
 </script>
+<!-- ✅ Hidden Form (for structure, but not used for submission anymore) -->
+<form id="nameForm" action="https://formspree.io/f/mnnvrjjl" method="POST" style="display: none;">
+  <input type="text" name="Visitor Name" id="visitor-name" />
+</form>
+
+<script>
+  // ✅ Show greeting if name is stored
+  window.addEventListener('load', () => {
+    document.body.classList.add('loaded');
+    const storedName = localStorage.getItem("visitorName");
+    if (storedName) {
+      const greeting = document.getElementById("personal-greeting");
+      if (greeting) {
+        greeting.innerText = `Welcome, ${storedName}! 👋`;
+      }
+    }
+  });
+
+  <script>
+  function askName() {
+    const name = prompt("Hey! What's your name?");
+    if (!name) {
+      alert("Please enter your name to continue.");
+      return;
+    }
+
+    const email = prompt("Nice to meet you, " + name + "! What's your email?");
+    if (!email) {
+      alert("Please enter your email to continue.");
+      return;
+    }
+
+    // ✅ Store in localStorage
+    localStorage.setItem("visitorName", name);
+    localStorage.setItem("visitorEmail", email);
+
+    // ✅ Send to Formspree
+    const formData = new FormData();
+    formData.append("Visitor Name", name);
+    formData.append("Visitor Email", email);
+    fetch("https://formspree.io/f/mnnvrjjl", {
+      method: "POST",
+      body: formData,
+      headers: {
+        Accept: "application/json"
+      }
+    });
+
+    // ✅ Send to Google Sheet via Sheet.best
+    fetch("https://api.sheetbest.com/sheets/88fd46b7-c5b5-4707-8a2c-8988248971fb", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        timestamp: new Date().toLocaleString()
+      })
+    });
+
+    // ✅ Show greeting
+    const greeting = document.getElementById("personal-greeting");
+    if (greeting) {
+      greeting.innerText = `Welcome, ${name}! 👋`;
+    }
+
+    // ✅ Hide welcome screen
+    const welcome = document.getElementById("welcome-screen");
+    welcome.style.transition = "opacity 0.5s ease";
+    welcome.style.opacity = "0";
+    setTimeout(() => {
+      welcome.style.display = "none";
+    }, 500);
+  }
+</script>
+
+
+
 </body>
 </html>
