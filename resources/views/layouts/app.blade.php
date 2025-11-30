@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="{{ $description ?? 'Rohit Joshi – Laravel Developer. Portfolio, services, skills, blog, gallery and certifications.' }}" />
+    <meta name="description"
+        content="{{ $description ?? 'Rohit Joshi – Laravel Developer. Portfolio, services, skills, blog, gallery and certifications.' }}" />
     <title>{{ $title ?? 'Rohit Joshi | Laravel Developer' }}</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -20,9 +22,14 @@
             --border-color: rgba(255, 255, 255, 0.07);
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-        html, body {
+        html,
+        body {
             font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
             background: var(--bg);
             color: var(--text);
@@ -30,7 +37,10 @@
             line-height: 1.6;
         }
 
-        a { color: inherit; text-decoration: none; }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
         .app-wrapper {
             margin-top: 100px;
@@ -52,8 +62,10 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 8px 25px; 
-            gap: 60px; 
+            /* Increased side padding for balance */
+            padding: 8px 25px;
+            /* This 60px gap pushes the Logo and Links apart */
+            gap: 60px;
             width: auto;
             background: var(--glass);
             backdrop-filter: blur(16px);
@@ -63,11 +75,32 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
-        .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; padding-left: 8px; }
-        .logo img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
-        .logo span { color: var(--primary); }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 18px;
+            padding-left: 8px;
+        }
 
-        .desktop-nav { display: flex; gap: 20px; align-items: center; }
+        .logo img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .desktop-nav {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
         .desktop-nav a {
             position: relative;
             font-weight: 500;
@@ -76,8 +109,15 @@
             padding: 8px 4px;
             transition: color 0.3s ease;
         }
-        .desktop-nav a:hover { color: var(--text); }
-        .desktop-nav a.active { color: var(--text); }
+
+        .desktop-nav a:hover {
+            color: var(--text);
+        }
+
+        .desktop-nav a.active {
+            color: var(--text);
+        }
+
         .desktop-nav a.active::after {
             content: '';
             position: absolute;
@@ -99,10 +139,17 @@
             font-weight: 600;
             transition: all 0.3s ease;
         }
-        .cta-button:hover { box-shadow: 0 0 15px rgba(79, 124, 255, 0.6); transform: translateY(-2px); }
+
+        .cta-button:hover {
+            box-shadow: 0 0 15px rgba(79, 124, 255, 0.6);
+            transform: translateY(-2px);
+        }
 
         /* --- Mobile Navigation --- */
-        #menu-toggle { display: none; }
+        #menu-toggle {
+            display: none;
+        }
+
         .mobile-nav {
             position: fixed;
             top: 0;
@@ -122,9 +169,21 @@
             transition: opacity 0.4s ease, visibility 0.4s ease;
             z-index: 1100;
         }
-        .mobile-nav.open { opacity: 1; visibility: visible; }
-        .mobile-nav a { font-size: 1.5rem; font-weight: 600; color: var(--text); }
-        .mobile-nav a.active { color: var(--primary); }
+
+        .mobile-nav.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-nav a {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .mobile-nav a.active {
+            color: var(--primary);
+        }
 
         /* --- Footer --- */
         footer {
@@ -137,7 +196,10 @@
         }
 
         @media (max-width: 860px) {
-            .desktop-nav { display: none; }
+            .desktop-nav {
+                display: none;
+            }
+
             #menu-toggle {
                 display: block;
                 background: none;
@@ -150,8 +212,16 @@
                 top: 28px;
                 right: 28px;
             }
-            .header-container { justify-content: flex-start; top: 16px; left: 16px; }
-            .navbar { padding: 6px 8px; }
+
+            .header-container {
+                justify-content: flex-start;
+                top: 16px;
+                left: 16px;
+            }
+
+            .navbar {
+                padding: 6px 8px;
+            }
         }
     </style>
 
@@ -162,15 +232,17 @@
     <header class="header-container">
         <div class="navbar">
             <a class="logo" href="{{ route('home') }}">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSn-mLqVUisgZmQ_I9xw8PEzAtgXSxbUM3pFw&s" alt="Rohit Joshi Logo">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSn-mLqVUisgZmQ_I9xw8PEzAtgXSxbUM3pFw&s"
+                    alt="Rohit Joshi Logo">
                 <span>Rohit</span>
             </a>
 
             <nav class="desktop-nav" aria-label="Main navigation">
                 <a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'active' : '' }}">Home</a>
                 <a href="{{ route('about') }}" class="{{ request()->routeIs('about') ? 'active' : '' }}">About</a>
-                <a href="{{ route('services.index') }}" class="{{ request()->routeIs('services.*') ? 'active' : '' }}">Services</a>
-        
+                <a href="{{ route('services.index') }}"
+                    class="{{ request()->routeIs('services.*') ? 'active' : '' }}">Services</a>
+
                 <a href="{{ route('blog.index') }}" class="{{ request()->routeIs('blog.*') ? 'active' : '' }}">Blog</a>
                 <a href="{{ route('home') }}#gallery">Gallery</a>
                 <a href="{{ route('home') }}#contact" class="cta-button">Contact</a>
@@ -185,7 +257,8 @@
     <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
         <a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'active' : '' }}">Home</a>
         <a href="{{ route('about') }}" class="{{ request()->routeIs('about') ? 'active' : '' }}">About</a>
-        <a href="{{ route('services.index') }}" class="{{ request()->routeIs('services.*') ? 'active' : '' }}">Services</a>
+        <a href="{{ route('services.index') }}"
+            class="{{ request()->routeIs('services.*') ? 'active' : '' }}">Services</a>
         <a href="{{ route('home') }}#skills">Skills</a>
         <a href="{{ route('home') }}#projects">Projects</a>
         <a href="{{ route('blog.index') }}" class="{{ request()->routeIs('blog.*') ? 'active' : '' }}">Blog</a>
@@ -198,7 +271,8 @@
     </div>
 
     <footer>
-        &copy; {{ date('Y') }} Rohit Joshi • Laravel Developer • <a href="{{ route('home') }}#contact" style="color:var(--primary);font-weight:600">Get in Touch</a>
+        &copy; {{ date('Y') }} Rohit Joshi • Laravel Developer • <a href="{{ route('home') }}#contact"
+            style="color:var(--primary);font-weight:600">Get in Touch</a>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -227,4 +301,5 @@
 
     @yield('extra-scripts')
 </body>
+
 </html>
