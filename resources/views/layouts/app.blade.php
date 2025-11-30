@@ -62,9 +62,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            /* Increased side padding for balance */
             padding: 8px 25px;
-            /* This 60px gap pushes the Logo and Links apart */
             gap: 60px;
             width: auto;
             background: var(--glass);
@@ -240,9 +238,7 @@
             <nav class="desktop-nav" aria-label="Main navigation">
                 <a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'active' : '' }}">Home</a>
                 <a href="{{ route('about') }}" class="{{ request()->routeIs('about') ? 'active' : '' }}">About</a>
-                <a href="{{ route('services.index') }}"
-                    class="{{ request()->routeIs('services.*') ? 'active' : '' }}">Services</a>
-
+                <a href="{{ route('services.index') }}"class="{{ request()->routeIs('services.*') ? 'active' : '' }}">Services</a>
                 <a href="{{ route('blog.index') }}" class="{{ request()->routeIs('blog.*') ? 'active' : '' }}">Blog</a>
                 <a href="{{ route('home') }}#gallery">Gallery</a>
                 <a href="{{ route('home') }}#contact" class="cta-button">Contact</a>
